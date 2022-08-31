@@ -8,6 +8,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WebsiteTest extends TestBase {
 
     @ParameterizedTest
+    @EnumSource(value = WebsiteTitleProvider.class, names = {"SII"})
+    @DisplayName("Checking title for sii.pl")
+    @Tag("sii")
+    @Tag("regression")
+    void checkTitleForSii(WebsiteTitleProvider title) {
+        driver.get("https:www.sii.pl");
+        String actualTitle = driver.getTitle();
+        assertThat(actualTitle).isEqualTo(title.toString());
+    }
+
+    @ParameterizedTest
     @EnumSource(value = WebsiteTitleProvider.class, names = {"ONET"})
     @DisplayName("Checking title for onet.pl")
     @Tag("onet")
