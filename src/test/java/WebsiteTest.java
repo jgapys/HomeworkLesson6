@@ -56,7 +56,7 @@ public class WebsiteTest extends TestBase {
     @DisplayName("Checking title for selenium.dev")
     @Tag("selenium")
     @Tag("regression")
-    void checkTitleForSiiPortal(WebsiteTitleProvider title) {
+    void checkTitleForSelenium(WebsiteTitleProvider title) {
         driver.get("https:www.selenium.dev/documentation/en/webdriver/");
         String actualTitle = driver.getTitle();
         assertThat(actualTitle).isEqualTo(title.toString());
