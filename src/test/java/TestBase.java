@@ -1,14 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 
 import java.util.logging.Level;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestBase {
     WebDriver driver;
@@ -29,16 +27,5 @@ public class TestBase {
     @AfterEach
     void tearDown() {
         driver.quit();
-    }
-
-    @ParameterizedTest
-    @EnumSource(value = WebsiteTitleProvider.class, names = {"SII"})
-    @DisplayName("Checking title for sii.pl")
-    @Tag("sii")
-    @Tag("regression")
-    void checkTitleForSii(WebsiteTitleProvider title) {
-        driver.get("https:www.sii.pl");
-        String actualTitle = driver.getTitle();
-        assertThat(actualTitle).isEqualTo(title.toString());
     }
 }
